@@ -1,0 +1,13 @@
+<litepal>
+
+    <dbname value = "first_weather" />
+
+    <version value = "1"/>
+
+    <list>
+        <mapping class = "tech.panbin.android.firstweather.db.Province"/>
+        <mapping class = "tech.panbin.android.firstweather.db.City"/>
+        <mapping class = "tech.panbin.android.firstweather.db.Country"/>
+    </list>
+
+</litepal>
