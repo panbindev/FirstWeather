@@ -1,10 +1,13 @@
 package tech.panbin.android.firstweather;
 
+import android.annotation.TargetApi;
 import android.app.Fragment;
 import android.app.ProgressDialog;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.*;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -62,16 +65,80 @@ public class ChooseAreaFragment extends Fragment {
 //    当前选中的级别
     private int currentLevel;
 
+    @TargetApi(Build.VERSION_CODES.M)
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+
+        View view = inflater.inflate(R.layout.choose_area, container,false);
+        titleText = (TextView) view.findViewById(R.id.title_text);
+        backButton = (Button) view.findViewById(R.id.back_button);
+        listView = (ListView) view.findViewById(R.id.list_view);
+        adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, dataList);
+        listView.setAdapter(adapter);
+        return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int posion, long id) {
+
+                if(currentLevel == LEVEL_PROVINCE){
+                    selectedProvince = provinceList.get(posion);
+                    queryCities();
+                }else if(currentLevel == LEVEL_CITY){
+                    selectedCity = cityList.get(posion);
+                    queryCountries();
+                }
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(currentLevel == LEVEL_COUNTRY){
+                    queryCities();
+                }else if(currentLevel == LEVEL_CITY){
+                    queryProvinces();
+                }
+            }
+        });
+
+        queryProvinces();
     }
 
-    
+
+//    查询所有的省，先查数据库，若没有再查服务器
+    private void queryProvinces(){
+
+    }
+
+//    查询所有的市，先查数据库，若没有再查服务器
+    private void queryCities(){
+
+    }
+
+//    查询所有的县区，先查数据库，若没有再查服务器
+    private void queryCountries(){
+
+    }
+
+//    从服务器查询
+    private void queryFromServer(String address, final String type){
+
+    }
+
+//    显示进度对话框
+    private void showProgressDialog(){
+
+    }
+
+//    关闭进度对话框
+    private void closeProgressDialog(){
+
+    }
 }
