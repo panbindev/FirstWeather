@@ -213,12 +213,12 @@ public class WeatherActivity extends AppCompatActivity {
     * */
     private void showWeatherInfo(Weather weather){
         String cityName = weather.basic.cityName;
-        String updateTime = weather.basic.update.updateTime;
+        String updateTime = weather.basic.update.updateTime.split(" ")[1];
         String degree = weather.now.nowTemperature + "℃";
         String weatherInfo = weather.now.nowCond.info;
 
         titleCity.setText(cityName);
-        titleUpdateTime.setText(updateTime);
+        titleUpdateTime.setText(updateTime+"发布");
         degreeText.setText(degree);
         weatherInfoText.setText(weatherInfo);
         forecastLayout.removeAllViews();
