@@ -2,6 +2,8 @@ package tech.panbin.android.firstweather.util;
 
 import android.text.TextUtils;
 
+import com.google.gson.Gson;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,6 +11,7 @@ import org.json.JSONObject;
 import tech.panbin.android.firstweather.db.City;
 import tech.panbin.android.firstweather.db.Country;
 import tech.panbin.android.firstweather.db.Province;
+import tech.panbin.android.firstweather.gson.Weather;
 
 /**
  * Created by PanBin on 2018/01/13.
@@ -86,5 +89,23 @@ public class Utility {
             }
         }
         return false;
+    }
+
+
+    /*
+    * 解析天气数据
+    * */
+    public static Weather handleWeatherResponse(String response){
+
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray jsonArray = jsonObject.getJSONArray("FirstWeather");
+            String weatherContent = jsonArray.getJSONObject(0).toString();
+            return new Gson().fromJson(weatherContent, Weather.class);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }
