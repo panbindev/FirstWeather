@@ -3,7 +3,8 @@
 <!--显示未来天气信息-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_margin="15dp">
 
     <!--显示天气预报日期-->
     <TextView

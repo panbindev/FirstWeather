@@ -31,7 +31,7 @@ import tech.panbin.android.firstweather.util.Utility;
 
 public class WeatherActivity extends AppCompatActivity {
 
-    private final String weatherApiKey = "ef0300aabb6b491faa97c64305af3ad3";
+    private final String weatherApiKey = "bc0418b57b2d4918819d3974ac1285d9";
 
     private ScrollView weatherLayout;
 
