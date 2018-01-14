@@ -3,6 +3,7 @@ package tech.panbin.android.firstweather;
 import android.annotation.TargetApi;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -104,6 +105,15 @@ public class ChooseAreaFragment extends Fragment {
                 }else if(currentLevel == LEVEL_CITY){
                     selectedCity = cityList.get(posion);
                     queryCountries();
+                }
+                else if(currentLevel == LEVEL_COUNTRY){
+                    //                Added on 2018/1/14 ,by PanBin
+                    String weatherId = countryList.get(posion).getWeatherId();
+                    Intent intent = new Intent(getActivity(), WeatherActivity.class);
+
+                    intent.putExtra("weather_id",weatherId);
+                    startActivity(intent);
+                    getActivity().finish();
                 }
             }
         });
