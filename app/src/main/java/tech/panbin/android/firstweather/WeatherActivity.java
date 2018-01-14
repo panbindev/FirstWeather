@@ -87,7 +87,7 @@ public class WeatherActivity extends AppCompatActivity {
     * */
     public void requestWeather(final String weatherId){
 
-        String weatherUrl = "http://guolin.tech/api/weather?cityid=" + weatherId + "&key" + weatherApiKey;
+        String weatherUrl = "http://guolin.tech/api/weather?cityid=" + weatherId + "&key=" + weatherApiKey;
 
         HttpUtil.sendOkHttpRequest(weatherUrl, new Callback() {
             @Override
@@ -96,7 +96,7 @@ public class WeatherActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(WeatherActivity.this,"获取天气信息失败",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(WeatherActivity.this,"网络请求失败，无法获取城市"+weatherId+"天气信息",Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -116,7 +116,12 @@ public class WeatherActivity extends AppCompatActivity {
                             showWeatherInfo(weather);
                         }
                         else{
-                            Toast.makeText(WeatherActivity.this,"获取天气信息失败",Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(WeatherActivity.this,"获取城市"+weatherId+"天气信息失败",Toast.LENGTH_SHORT).show();
+
+                            /*
+                            * Debug
+                            * */
+                            Toast.makeText(WeatherActivity.this,"数据解析失败！\n返回值：\n"+responseText,Toast.LENGTH_LONG).show();
                         }
                     }
                 });
