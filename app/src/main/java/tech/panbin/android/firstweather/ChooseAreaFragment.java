@@ -109,11 +109,21 @@ public class ChooseAreaFragment extends Fragment {
                 else if(currentLevel == LEVEL_COUNTRY){
                     //                Added on 2018/1/14 ,by PanBin
                     String weatherId = countryList.get(posion).getWeatherId();
-                    Intent intent = new Intent(getActivity(), WeatherActivity.class);
 
-                    intent.putExtra("weather_id",weatherId);
-                    startActivity(intent);
-                    getActivity().finish();
+                    if(getActivity() instanceof MainActivity){
+                        Intent intent = new Intent(getActivity(), WeatherActivity.class);
+
+                        intent.putExtra("weather_id",weatherId);
+                        startActivity(intent);
+                        getActivity().finish();
+                    }
+                    else if(getActivity() instanceof WeatherActivity){
+                        WeatherActivity weatherActivity =(WeatherActivity) getActivity();
+                        weatherActivity.drawerLayout.closeDrawers();
+                        weatherActivity.swipeRefreshLayout.setRefreshing(true);
+                        weatherActivity.requestWeather(weatherId);
+                    }
+
                 }
             }
         });

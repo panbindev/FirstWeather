@@ -12,41 +12,53 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"/>
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_refresh"
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ScrollView
-            android:id="@+id/weather_layout"
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
-                android:orientation="vertical"
+            <ScrollView
+                android:id="@+id/weather_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
-                <include layout="@layout/title"/>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <include layout="@layout/now"/>
+                    <include layout="@layout/title"/>
 
-                <include layout="@layout/forecast"/>
+                    <include layout="@layout/now"/>
 
-                <include layout="@layout/aqi"/>
+                    <include layout="@layout/forecast"/>
 
-                <include layout="@layout/suggestion"/>
+                    <include layout="@layout/aqi"/>
 
-            </LinearLayout>
+                    <include layout="@layout/suggestion"/>
 
-        </ScrollView>
+                </LinearLayout>
 
-    </android.support.v4.widget.SwipeRefreshLayout>
+            </ScrollView>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <fragment
+            android:id="@+id/choose_area_fragment"
+            android:name="tech.panbin.android.firstweather.ChooseAreaFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            />
+
+    </android.support.v4.widget.DrawerLayout>
 
 </FrameLayout>
-
-
-
 
 
 <!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
