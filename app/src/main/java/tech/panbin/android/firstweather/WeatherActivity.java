@@ -1,5 +1,6 @@
 package tech.panbin.android.firstweather;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v4.view.GravityCompat;
@@ -26,6 +27,7 @@ import okhttp3.Callback;
 import okhttp3.Response;
 import tech.panbin.android.firstweather.gson.Forecast;
 import tech.panbin.android.firstweather.gson.Weather;
+import tech.panbin.android.firstweather.service.AutoUpdateService;
 import tech.panbin.android.firstweather.util.HttpUtil;
 import tech.panbin.android.firstweather.util.Utility;
 
@@ -251,6 +253,9 @@ public class WeatherActivity extends AppCompatActivity {
         carWashText.setText(carWash);
         sportText.setText(sport);
         weatherLayout.setVisibility(View.VISIBLE);
+
+        Intent intent = new Intent(this, AutoUpdateService.class);
+        startService(intent);
     }
 
     /*
